@@ -1,0 +1,67 @@
+import pyspark
+import pyarrow
+from pyspark.sql import SQLContext
+from pyspark.sql import SparkSession
+from pyspark import SparkContext
+from pyspark.sql.types import *
+from pyspark.sql.functions import udf
+
+data = spark.read.format("csv").option("header", "true").load('/home/luca/Documents/ANONYMIZER4_UDF/data/health_dataset/healthdata.csv')
+
+spark = SparkSession.builder.appName('Anonymizer').master("local[*]").getOrCreate()
+
+spark.sparkContext.addPyFile("/home/luca/Documents/ANONYMIZER4_UDF/anonymizer.py")
+spark.sparkContext.addPyFile("/home/luca/Documents/ANONYMIZER4_UDF/mondrian.py")
+spark.sparkContext.addPyFile("/home/luca/Documents/ANONYMIZER4_UDF/utility.py")
+spark.sparkContext.addPyFile("/home/luca/Documents/ANONYMIZER4_UDF/read_file.py")
+spark.sparkContext.addPyFile("/home/luca/Documents/ANONYMIZER4_UDF/read_adult_data.py")
+
+from anonymizer import get_result_one_udf
+
+==========================================================
+
+from pyspark.sql.functions import pandas_udf, PandasUDFType
+
+df = spark.createDataFrame(
+    [(1, 1.0), (1, 2.0), (2, 3.0), (2, 5.0), (2, 10.0)],
+    ("id", "v"))
+
+@pandas_udf("id long, v double", PandasUDFType.GROUPED_MAP)
+def subtract_mean(pdf):
+    # pdf is a pandas.DataFrame
+    v = pdf.v
+    return pdf.assign(v=v - v.mean())
+
+df.groupby("id").apply(subtract_mean).show()
+
+==========================================================
+
+from pyspark.sql.functions import pandas_udf, PandasUDFType
+
+df = spark.read.format("csv").option("header", "true").load('/home/luca/Documents/ANONYMIZER4_UDF/data/health_dataset/healthdata.csv')
+
+@pandas_udf("PatientID string, PatientName string, Postcode string, Age string, Disease string", PandasUDFType.GROUPED_MAP)
+def anonymize(pdf):
+    PatientName = pdf.PatientName
+    Postcode = pdf.Postcode
+    Age = pdf.Age
+    return pdf.assign(Postcode="ciao")
+
+df.groupby("Postcode", "Age").apply(anonymize).show()
+df.groupby("Postcode", "Age").count().show()
+
+==========================================================
+
+from pyspark.sql.functions import pandas_udf, PandasUDFType
+
+df = spark.read.format("csv").option("header", "true").load('/home/luca/Documents/ANONYMIZER4_UDF/data/health_dataset/healthdata.csv')
+
+@pandas_udf("PatientID string, PatientName string, Postcode string, Age string, Disease string", PandasUDFType.GROUPED_MAP)
+def anonymize(pdf):
+    PatientName = pdf.PatientName
+    Postcode = pdf.Postcode
+    Age = pdf.Age
+    return pdf.assign(Postcode=Postcode+"*", PatientName="*")
+
+df.groupby("PatientID", "Postcode", "Age").apply(anonymize).show()
+df.groupby("Postcode", "Age").count().show()

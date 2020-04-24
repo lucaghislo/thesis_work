@@ -1,0 +1,93 @@
+PYSPARK UDF EXAMPLES
+
+===================================================================
+
+import pyspark
+from pyspark.sql import SQLContext
+from pyspark.sql.types import *
+from pyspark.sql import SQLContext
+from pyspark.sql.functions import udf
+
+training_df = sqlContext.sql("select 'foo' as tweet, 'bar' as classification")
+
+def dummy_function(data_str):
+     cleaned_str = 'dummyData'
+     return cleaned_str
+
+dummy_function_udf = udf(dummy_function, StringType())
+df = training_df.withColumn("dummy", dummy_function_udf(training_df['tweet']))
+df.show()
+
+>>>
+
++-----+--------------+---------+
+|tweet|classification|    dummy|
++-----+--------------+---------+
+|  foo|           bar|dummyData|
++-----+--------------+---------+
+
+===================================================================
+
+import hashlib
+import uuid
+import datetime
+from pyspark.sql.types import StringType
+
+def customencoding(s):
+    m = hashlib.md5()
+    m.update(s.encode('utf-8'))
+    d = m.hexdigest()
+    return d
+
+spark.udf.register("udf_customhashing32adadf", customencoding, StringType())
+
+spark.sql("SELECT udf_customhashing32adadf('test') as rowid").show(10, False)
+
+>>>
+
++--------------------------------+
+|rowid                           |
++--------------------------------+
+|098f6bcd4621d373cade4e832627b4f6|
++--------------------------------+
+
+===================================================================
+
+from pyspark.sql.functions import udf, struct, col
+from pyspark.sql.types import * 
+import pyspark.sql.functions as func
+
+def extractAge(mystring):
+    if mystring.strip() == 'age 18-25':
+        return 21.5
+    if mystring.strip() == 'age 26-35':
+        return 30.5
+    else:
+        return None
+
+extract_age_udf = udf(lambda row: extractAge(row), FloatType())
+
+df = sc.parallelize([[1., 'age 18-25'], [2., 'age 100+']]).toDF(["f1","age"])
+df.show()
+
+>>>
+
++---+---------+
+| f1|      age|
++---+---------+
+|1.0|age 18-25|
+|2.0| age 100+|
++---+---------+
+
+df_new = df.withColumn('age_n', extract_age_udf(col('age')))
+df_new.show()
+
+>>>
+
++---+---------+-----+
+| f1|      age|age_n|
++---+---------+-----+
+|1.0|age 18-25| 21.5|
+|2.0| age 100+| null|
++---+---------+-----+
+

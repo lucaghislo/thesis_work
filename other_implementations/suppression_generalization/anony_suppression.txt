@@ -1,0 +1,57 @@
+import pyspark
+from pyspark.sql import SQLContext
+from pyspark.sql.types import *
+from pyspark.sql import SQLContext
+from pyspark.sql.functions import udf
+
+data = spark.read.format("csv").option("header", "true").load('/home/luca/Documents/k-anonymization_SQL/healtdata.csv')
+
+data.show()
+
+>>>
+
++---------+-----------+--------+---+-------------+
+|PatientID|PatientName|Postcode|Age|      Disease|
++---------+-----------+--------+---+-------------+
+|        1|      Alice|   47678| 29|Heart Disease|
+|        2|        Bob|   47678| 22|Heart Disease|
+|        3|   Caroline|   47678| 27|Heart Disease|
+|        4|      David|   47905| 43|          Flu|
+|        5|    Eleanor|   47909| 52|Heart Disease|
+|        6|      Frank|   47906| 47|       Cancer|
+|        7|       Geri|   47605| 30|Heart Disease|
+|        8|      Harry|   47673| 36|       Cancer|
+|        9|     Ingrid|   47607| 32|       Cancer|
++---------+-----------+--------+---+-------------+
+
+def suppress(data_str):
+    l=len(data_str)
+    l=float(l)
+    n=l*0.8
+    n=int(n)
+    l=int(l)
+    data_str=data_str[:n]+"*"*(l-n)
+    return data_str
+
+suppress_udf=udf(suppress, StringType())
+
+result=data.withColumn("PatientName", suppress_udf(data['PatientName'])).withColumn("PostCode", suppress_udf(data['Postcode'])).withColumn("Age", suppress_udf(data['Age'])).withColumn("PatientID", suppress_udf(data['PatientID']))
+
+result.show()
+
+>>>
+
++---------+-----------+--------+---+-------------+                              
+|PatientID|PatientName|PostCode|Age|      Disease|
++---------+-----------+--------+---+-------------+
+|        *|      Al***|   47***| 2*|Heart Disease|
+|        *|        B**|   47***| 2*|Heart Disease|
+|        *|   Caro****|   47***| 2*|Heart Disease|
+|        *|      Da***|   47***| 4*|          Flu|
+|        *|    Ele****|   47***| 5*|Heart Disease|
+|        *|      Fr***|   47***| 4*|       Cancer|
+|        *|       Ge**|   47***| 3*|Heart Disease|
+|        *|      Ha***|   47***| 3*|       Cancer|
+|        *|     Ing***|   47***| 3*|       Cancer|
++---------+-----------+--------+---+-------------+
+

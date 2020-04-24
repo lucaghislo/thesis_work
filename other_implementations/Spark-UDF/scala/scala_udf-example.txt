@@ -1,0 +1,32 @@
+SCALA UDF PARSER EXAMPLE
+
+===================================================================
+
+val dataset = sc.textFile("/home/luca/Documents/Spark_UDF/uber")
+val header = dataset.first()
+val data = dataset.filter(line => line != header)
+case class uber(dispatching_base_number:String ,date:String,active_vehicles:Int,trips:Int)
+val mapping= data.map(x=>x.split(",")).map(x => uber(x(0).toString,x(1),x(2).toInt,x(3).toInt)).toDF
+mapping.registerTempTable("uber")
+
+===================================================================
+
+def
+parse = (s: String) => {
+val format = new java.text.SimpleDateFormat("MM/dd/yyyy")
+var days =Array("Sun","Mon","Tue","Wed","Thu","Fri","Sat")
+val split = days(format.parse(s).getDay).toString
+split
+}
+
+===================================================================
+
+sqlContext.udf.register("parsed",parse)
+
+===================================================================
+
+val test = sqlContext.sql("select dispatching_base_number as dis, parsed(date) as dt ,sum(trips) as cnt from uber group by dispatching_base_number,parsed(date) order by cnt desc")
+
+===================================================================s
+
+test.collect()

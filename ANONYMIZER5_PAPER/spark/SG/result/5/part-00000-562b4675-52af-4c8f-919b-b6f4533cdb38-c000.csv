@@ -1,0 +1,7 @@
+age,job,marital,edu,social,race,position,county,country,salary
+40,"\" Private\"","\" Married-civ-spouse\"","\" Assoc-voc\"","\" Husband\"","\" Asian-Pac-Islander\"","\" Craft-repair\"",40,"\" ?\"","\" >50K\""
+40,"\" Private\"","\" Married-civ-spouse\"","\" Assoc-voc\"","\" Husband\"","\" White\"","\" Tech-support\"",40,"\" United-States\"","\" >50K\""
+40,"\" Private\"","\" Married-civ-spouse\"","\" Assoc-voc\"","\" Husband\"","\" Asian-Pac-Islander\"","\" Machine-op-inspct\"",40,"\" United-States\"","\" >50K\""
+40,"\" Private\"","\" Married-civ-spouse\"","\" Assoc-voc\"","\" Husband\"","\" White\"","\" Tech-support\"",40,"\" United-States\"","\" <=50K\""
+40,"\" Private\"","\" Married-civ-spouse\"","\" Assoc-voc\"","\" Husband\"","\" White\"","\" Exec-managerial\"",50,"\" United-States\"","\" >50K\""
+40,"\" Private\"","\" Married-civ-spouse\"","\" Assoc-voc\"","\" Husband\"","\" Black\"","\" Handlers-cleaners\"",40,"\" United-States\"","\" <=50K\""

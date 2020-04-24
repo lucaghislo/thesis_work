@@ -1,0 +1,10 @@
+PatientID,PatientName,Postcode,Age,Disease
+1,Alice,47678,29,Heart Disease
+2,Bob,47678,22,Heart Disease
+3,Caroline,47678,27,Heart Disease
+4,David,47905,43,Flu
+5,Eleanor,47909,52,Heart Disease
+6,Frank,47906,47,Cancer
+7,Geri,47605,30,Heart Disease
+8,Harry,47673,36,Cancer
+9,Ingrid,47607,32,Cancer

@@ -1,0 +1,51 @@
+id,age,city_birth,zip_code,disease
+1,55,San Giovanni Del Dosso,25049,Cancer
+2,50,Comina,16151,AIDS
+3,17,Marina Di Camerota,73015,AIDS
+4,8,Tonnarella,19028,Autism
+5,40,San Bartolomeo Lanze,58014,Autism
+6,41,Cade',13884,Autism
+7,57,Corsione,86070,AIDS
+8,59,Arre,85020,Autism
+9,60,San Giovanni,87045,Autism
+10,70,Trigolo,34010,Heart disease
+11,51,Selino Basso,98074,Alzheimer's disease
+12,56,San Giacomo Delle Segnate,27020,Heart disease
+13,53,Cerreto,38077,Anorexia
+14,40,Bergantino,56017,Heart disease
+15,25,Barberino Val D'Elsa,41028,Autism
+16,11,Badia Di Cava De' Tirreni,15060,Anorexia
+17,2,Santa Maria Del Taro,53030,Heart disease
+18,11,Rifreddo,39010,Cancer
+19,89,Nuraminis,16167,Heart disease
+20,12,Flagogna,33030,Autism
+21,9,Rinaggiu,25019,Cancer
+22,29,Lodrone,39056,Heart disease
+23,56,Banco,74020,Anorexia
+24,70,Biella,39028,Autism
+25,18,San Gallo,86045,Heart disease
+26,38,Bacchereto,37137,Alzheimer's disease
+27,62,Sant'Angelo Di Cetraro,90049,AIDS
+28,13,Montecastelli Pisano,39011,Autism
+29,53,Guardamiglio,16010,AIDS
+30,42,Colognole,57014,Anorexia
+31,32,Sant'Antonino Di Susa,51100,AIDS
+32,37,Mandrogne,39010,Anorexia
+33,49,Cassano Spinola,56020,Heart disease
+34,94,San Lorenzo,87040,AIDS
+35,87,Plawenn,39024,Alzheimer's disease
+36,17,Salcito,16030,Autism
+37,53,Vannullo,61037,AIDS
+38,65,Luserna,27023,Autism
+39,7,Monticchiello,21010,Heart disease
+40,44,Sala,81028,AIDS
+41,53,Pedrengo,33100,Alzheimer's disease
+42,63,San Cipriano Picentino,71027,Anorexia
+43,75,Pasturo,23818,AIDS
+44,33,Erchie,90040,Autism
+45,14,San Piero In Bagno,17014,Anorexia
+46,79,Catania,81037,Heart disease
+47,68,Morro Reatino,60044,Alzheimer's disease
+48,63,Prignano Cilento,82020,Anorexia
+49,49,San Girolamo,23035,AIDS
+50,18,San Paolo,96010,Cancer

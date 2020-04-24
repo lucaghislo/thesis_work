@@ -1,0 +1,11 @@
+age,job,marital,edu,social,race,position,county,country,salary
+17,"\" ?\"","\" Never-married\"","\" 10th\"","\" Own-child\"","\" White\"","\" ?\"",32,"\" United-States\"","\" <=50K\""
+17,"\" ?\"","\" Never-married\"","\" 10th\"","\" Own-child\"","\" White\"","\" ?\"",20,"\" United-States\"","\" <=50K\""
+17,"\" ?\"","\" Never-married\"","\" 10th\"","\" Own-child\"","\" White\"","\" ?\"",30,"\" United-States\"","\" <=50K\""
+17,"\" ?\"","\" Never-married\"","\" 10th\"","\" Own-child\"","\" White\"","\" ?\"",20,"\" United-States\"","\" <=50K\""
+17,"\" ?\"","\" Never-married\"","\" 10th\"","\" Own-child\"","\" White\"","\" ?\"",30,"\" United-States\"","\" <=50K\""
+17,"\" Private\"","\" Never-married\"","\" 10th\"","\" Own-child\"","\" White\"","\" Other-service\"",21,"\" United-States\"","\" <=50K\""
+17,"\" Private\"","\" Never-married\"","\" 10th\"","\" Own-child\"","\" White\"","\" Farming-fishing\"",20,"\" United-States\"","\" <=50K\""
+17,"\" Private\"","\" Never-married\"","\" 10th\"","\" Own-child\"","\" White\"","\" Sales\"",30,"\" United-States\"","\" <=50K\""
+17,"\" Private\"","\" Never-married\"","\" 10th\"","\" Own-child\"","\" White\"","\" Handlers-cleaners\"",24,"\" United-States\"","\" <=50K\""
+17,"\" Private\"","\" Never-married\"","\" 10th\"","\" Other-relative\"","\" White\"","\" Sales\"",10,"\" United-States\"","\" <=50K\""

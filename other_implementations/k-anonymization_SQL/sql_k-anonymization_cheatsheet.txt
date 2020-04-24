@@ -1,0 +1,21 @@
+SQL K-ANONYMIZER (suppression and generalization)
+
+[read csv input file]
+	data = spark.read.format("csv").option("header", "true").load('/home/luca/Documents/k-anonymization_SQL/vgsales.csv')
+
+[create temporary view on the table]
+	data.createOrReplaceTempView("healthData")
+
+[sql k-anonymization]
+	anonymizedData=spark.sql("SELECT '*' as PatientName, CONCAT(LEFT(Postcode,3),'**') as Postcode, CASE WHEN Age<30 THEN 'Under 30' WHEN Age>=30 AND Age<=40 THEN '30 to 40' WHEN Age>40 THEN 'Over 40' END AS AgeGroup, Disease FROM healthData")
+
+[show content of the table]
+	anonymizedData.show()
+
+[k-anonimity verification]
+	anonymizedData.createOrReplaceTempView("anonymizedData")
+
+	anonimityTest=spark.sql("SELECT DISTINCT PatientName,Postcode,agegroup, COUNT(*) as KAnonymity FROM anonymizedData GROUP BY PatientName, Postcode, Agegroup")
+
+	anonymityTest.show()
+

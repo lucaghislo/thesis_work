@@ -1,0 +1,12 @@
+job,marital,edu,age,social,race,position,county,country,salary
+"\" Self-emp-not-inc\"","\" Married-civ-spouse\"","\" 5th-6th\"",47,"\" Husband\"","\" White\"","\" Sales\"",55,"\" Italy\"","\" >50K\""
+"\" ?\"","\" Divorced\"","\" 5th-6th\"",69,"\" Not-in-family\"","\" White\"","\" ?\"",40,"\" United-States\"","\" <=50K\""
+"\" Private\"","\" Separated\"","\" 5th-6th\"",37,"\" Not-in-family\"","\" White\"","\" Farming-fishing\"",32,"\" Guatemala\"","\" <=50K\""
+"\" Private\"","\" Married-spouse-absent\"","\" 5th-6th\"",66,"\" Unmarried\"","\" White\"","\" Handlers-cleaners\"",40,"\" Puerto-Rico\"","\" <=50K\""
+"\" Self-emp-inc\"","\" Married-civ-spouse\"","\" 5th-6th\"",47,"\" Husband\"","\" White\"","\" Transport-moving\"",50,"\" Cuba\"","\" <=50K\""
+"\" Private\"","\" Divorced\"","\" 5th-6th\"",55,"\" Unmarried\"","\" Black\"","\" Other-service\"",25,"\" United-States\"","\" <=50K\""
+"\" Private\"","\" Divorced\"","\" 5th-6th\"",58,"\" Not-in-family\"","\" Black\"","\" Machine-op-inspct\"",40,"\" United-States\"","\" <=50K\""
+"\" Private\"","\" Divorced\"","\" 5th-6th\"",46,"\" Not-in-family\"","\" White\"","\" Craft-repair\"",45,"\" United-States\"","\" <=50K\""
+"\" Private\"","\" Divorced\"","\" 5th-6th\"",60,"\" Not-in-family\"","\" White\"","\" Machine-op-inspct\"",40,"\" Puerto-Rico\"","\" <=50K\""
+"\" ?\"","\" Widowed\"","\" 5th-6th\"",53,"\" Unmarried\"","\" Black\"","\" ?\"",30,"\" United-States\"","\" <=50K\""
+"\" ?\"","\" Married-civ-spouse\"","\" 5th-6th\"",60,"\" Husband\"","\" White\"","\" ?\"",30,"\" United-States\"","\" >50K\""

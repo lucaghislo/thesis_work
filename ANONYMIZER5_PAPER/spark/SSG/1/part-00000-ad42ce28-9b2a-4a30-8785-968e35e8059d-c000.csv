@@ -1,0 +1,12 @@
+job,marital,edu,age,social,race,position,county,country,salary
+"\" Self-emp-inc\"","\" Married-civ-spouse\"","\" Doctorate\"",53,"\" Husband\"","\" White\"","\" Exec-managerial\"",70,"\" United-States\"","\" >50K\""
+"\" State-gov\"","\" Married-civ-spouse\"","\" Doctorate\"",48,"\" Wife\"","\" White\"","\" Prof-specialty\"",46,"\" United-States\"","\" >50K\""
+"\" State-gov\"","\" Married-civ-spouse\"","\" Doctorate\"",58,"\" Husband\"","\" White\"","\" Prof-specialty\"",1,"\" United-States\"","\" >50K\""
+"\" Federal-gov\"","\" Never-married\"","\" Doctorate\"",43,"\" Not-in-family\"","\" White\"","\" Prof-specialty\"",50,"\" United-States\"","\" >50K\""
+"\" Private\"","\" Divorced\"","\" Doctorate\"",46,"\" Unmarried\"","\" White\"","\" Prof-specialty\"",65,"\" United-States\"","\" >50K\""
+"\" Private\"","\" Married-spouse-absent\"","\" Doctorate\"",31,"\" Not-in-family\"","\" Asian-Pac-Islander\"","\" Prof-specialty\"",60,"\" China\"","\" <=50K\""
+"\" Self-emp-not-inc\"","\" Married-civ-spouse\"","\" Doctorate\"",52,"\" Husband\"","\" White\"","\" Prof-specialty\"",60,"\" United-States\"","\" >50K\""
+"\" Self-emp-not-inc\"","\" Married-civ-spouse\"","\" Doctorate\"",48,"\" Husband\"","\" White\"","\" Prof-specialty\"",60,"\" United-States\"","\" >50K\""
+"\" State-gov\"","\" Divorced\"","\" Doctorate\"",48,"\" Own-child\"","\" White\"","\" Prof-specialty\"",50,"\" United-States\"","\" >50K\""
+"\" ?\"","\" Widowed\"","\" Doctorate\"",61,"\" Not-in-family\"","\" White\"","\" ?\"",5,"\" United-States\"","\" <=50K\""
+"\" Self-emp-inc\"","\" Separated\"","\" Doctorate\"",50,"\" Not-in-family\"","\" White\"","\" Prof-specialty\"",40,"\" United-States\"","\" >50K\""

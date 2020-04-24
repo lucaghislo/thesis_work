@@ -1,0 +1,12 @@
+job,marital,edu,age,social,race,position,county,country,salary
+"\" ?\"","\" Divorced\"","\" 1st-4th\"",68,"\" Not-in-family\"","\" White\"","\" ?\"",20,"\" United-States\"","\" <=50K\""
+"\" ?\"","\" Divorced\"","\" 1st-4th\"",64,"\" Not-in-family\"","\" White\"","\" ?\"",40,"\" United-States\"","\" <=50K\""
+"\" Private\"","\" Widowed\"","\" 1st-4th\"",57,"\" Not-in-family\"","\" Black\"","\" Priv-house-serv\"",30,"\" United-States\"","\" <=50K\""
+"\" Self-emp-not-inc\"","\" Widowed\"","\" 1st-4th\"",63,"\" Unmarried\"","\" White\"","\" Other-service\"",30,"\" El-Salvador\"","\" <=50K\""
+"\" ?\"","\" Married-civ-spouse\"","\" 1st-4th\"",63,"\" Husband\"","\" White\"","\" ?\"",35,"\" United-States\"","\" <=50K\""
+"\" Private\"","\" Married-spouse-absent\"","\" 1st-4th\"",50,"\" Unmarried\"","\" White\"","\" Craft-repair\"",40,"\" United-States\"","\" <=50K\""
+"\" Private\"","\" Married-spouse-absent\"","\" 1st-4th\"",33,"\" Not-in-family\"","\" White\"","\" Priv-house-serv\"",40,"\" Guatemala\"","\" <=50K\""
+"\" Private\"","\" Married-civ-spouse\"","\" 1st-4th\"",39,"\" Husband\"","\" White\"","\" Craft-repair\"",45,"\" Mexico\"","\" <=50K\""
+"\" Private\"","\" Married-civ-spouse\"","\" 1st-4th\"",37,"\" Husband\"","\" White\"","\" Machine-op-inspct\"",40,"\" Mexico\"","\" <=50K\""
+"\" Private\"","\" Married-civ-spouse\"","\" 1st-4th\"",41,"\" Husband\"","\" White\"","\" Craft-repair\"",35,"\" Mexico\"","\" <=50K\""
+"\" Private\"","\" Married-civ-spouse\"","\" 1st-4th\"",52,"\" Husband\"","\" White\"","\" Machine-op-inspct\"",40,"\" Mexico\"","\" <=50K\""

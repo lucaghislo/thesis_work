@@ -1,0 +1,5 @@
+# Settings for k-anonymity
+solution: "suboptimal"	    # select usefulness optimal/suboptimal
+k_size: 2	  		        # size of columns to equalize
+assoc_id: 2			        # number of associative identifier raw
+filepath: "data/sample"	    # raw data file path

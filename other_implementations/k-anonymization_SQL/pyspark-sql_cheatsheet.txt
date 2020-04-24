@@ -1,0 +1,16 @@
+PYSPARK SQL CHEATSHEET
+
+[read json file]
+	df = spark.read.json('/usr/local/spark-2.4.4-bin-hadoop2.7/examples/src/main/resources/people.json')
+
+[read csv file]
+	data = spark.read.format("csv").option("header", "true").load('/home/luca/Documents/k-anonymization_SQL/healtdata.csv')
+
+[show json file content]
+	df.show()
+
+[create view]
+	df.createOrReplaceTempView("people")
+	sqlDF = spark.sql("SELECT * FROM people")
+	sqlDF.show()
+

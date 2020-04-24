@@ -1,0 +1,3 @@
+job,marital,edu,age,social,race,position,county,country,salary
+"\" Local-gov\"","\" Never-married\"","\" Preschool\"",53,"\" Not-in-family\"","\" White\"","\" Machine-op-inspct\"",35,"\" United-States\"","\" <=50K\""
+"\" Local-gov\"","\" Married-civ-spouse\"","\" Preschool\"",51,"\" Husband\"","\" White\"","\" Other-service\"",40,"\" United-States\"","\" <=50K\""

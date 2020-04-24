@@ -1,0 +1,97 @@
+K-ANONYMIZATION OF HEALT DATA USING SUPPRESSION AND GENERALIZATION
+
+~ quasi-identifiers: Postcode, Age
+~ sensitive data field: Disease
+
+======================================================================
+
+import pyspark
+from pyspark.sql import SQLContext
+from pyspark.sql.types import *
+from pyspark.sql import SQLContext
+from pyspark.sql.functions import udf
+
+data = spark.read.format("csv").option("header", "true").load('/home/luca/Documents/k-anonymization_SQL/healtdata.csv')
+
+data.show()
+
+>>>
+
++---------+-----------+--------+---+-------------+
+|PatientID|PatientName|Postcode|Age|      Disease|
++---------+-----------+--------+---+-------------+
+|        1|      Alice|   47678| 29|Heart Disease|
+|        2|      Alice|   47678| 22|Heart Disease|
+|        3|   Caroline|   47678| 27|Heart Disease|
+|        4|      David|   47905| 43|          Flu|
+|        5|    Eleanor|   47909| 52|Heart Disease|
+|        6|      Frank|   47906| 47|       Cancer|
+|        7|       Geri|   47605| 30|Heart Disease|
+|        8|      Harry|   47673| 36|       Cancer|
+|        9|      Frank|   47607| 32|       Cancer|
++---------+-----------+--------+---+-------------+
+
+def generalize(number):
+    number=int(number)
+    if number >= 40:
+        result = '>=40'
+    else:
+        number = float(number)
+        lower = number / 10
+        lower = int(lower)
+        upper = lower + 1
+        result = str(lower * 10) + "-" + str(upper * 10)
+    return result
+
+def suppress(data_str):
+    l=len(data_str)
+    l=float(l)
+    n=l*0.6
+    n=int(n)
+    l=int(l)
+    data_str=data_str[:n]+"*"*(l-n)
+    return data_str
+
+def suppress_all(data_str):
+    return "*"
+
+generalize_udf=udf(generalize, StringType())
+suppress_udf=udf(suppress, StringType())
+suppress_all_udf=udf(suppress_all, StringType())
+
+result=data.withColumn("PatientName", suppress_all_udf(data['PatientName'])).withColumn("Postcode", suppress_udf(data['Postcode'])).withColumn("Age", generalize_udf(data['Age'])).withColumn("PatientID", suppress_all_udf(data['PatientID']))
+
+result.show()
+
+>>>
+
++---------+-----------+--------+-----+-------------+
+|PatientID|PatientName|Postcode|  Age|      Disease|
++---------+-----------+--------+-----+-------------+
+|        *|          *|   476**|20-30|Heart Disease|
+|        *|          *|   476**|20-30|Heart Disease|
+|        *|          *|   476**|20-30|Heart Disease|
+|        *|          *|   479**| >=40|          Flu|
+|        *|          *|   479**| >=40|Heart Disease|
+|        *|          *|   479**| >=40|       Cancer|
+|        *|          *|   476**|30-40|Heart Disease|
+|        *|          *|   476**|30-40|       Cancer|
+|        *|          *|   476**|30-40|       Cancer|
++---------+-----------+--------+-----+-------------+
+
+result.coalesce(1).write.format('com.databricks.spark.csv').save('/home/luca/Documents/suppression_generalization/anonymized_dataset.csv', header = 'true')
+
+result.createOrReplaceTempView("resultView")
+verification=spark.sql("SELECT DISTINCT Postcode, Age, COUNT(*) AS kfactor FROM resultView GROUP BY Postcode, Age")
+verification.show()
+
+>>>
+
++--------+-----+-------+                                                        
+|Postcode|  Age|kfactor|
++--------+-----+-------+
+|   479**| >=40|      3|
+|   476**|20-30|      3|
+|   476**|30-40|      3|
++--------+-----+-------+
+

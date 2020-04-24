@@ -1,0 +1,43 @@
+export SPARK_HOME=/usr/local/spark	
+export PATH=$PATH:$SPARK_HOME/bin:$SPARK_HOME/sbin
+source ~/.bashrc
+start-master.sh
+start-slave.sh --cores 4 --memory 6g spark://luca-thinkpad:7077
+export HADOOP_HOME=/home/luca/hadoop-2.9.2-src
+export PYSPARK_PYTHON=python2
+
+$SPARK_HOME/bin/pyspark
+      ____              __
+     / __/__  ___ _____/ /__
+    _\ \/ _ \/ _ `/ __/  '_/
+   /__ / .__/\_,_/_/ /_/\_\   version 2.4.5
+      /_/
+
+[libraries import]
+import os
+spark.sparkContext.addPyFile("/home/luca/Documents/ANONYMIZER4_UDF/manualAnonyParams.py")
+from manualAnonyParams import *
+
+[data read from local file system and show]
+data = spark.read.format("csv").option("header", "true").load('/home/luca/Documents/ANONYMIZER6_STANDALONE/data/people_dataset/db_20.csv')
+data.show(100, False)
+
+[data read from hdfs and show]
+data = spark.read.format("csv").option("header", "true").load("hdfs://localhost:9000/input/adult.csv")
+data.show(100, False)
+
+[manually remove identifier(s)]
+data = data.withColumn("id", suppress_100_udf(data['id']))
+
+[export modified dataset]
+data.repartition(1).write.format("com.databricks.spark.csv").option("header","true").save("/home/luca/Documents/ANONYMIZER6_STANDALONE/data/people_dataset/db_20_mod.csv")
+
+[mondrian k-anonymization (python 2)]
+os.system("spark-submit --master spark://luca-thinkpad:7077 --deploy-mode client --name MondrianAnonymizer --jars /home/luca/Documents/ANONYMIZER1_MONDRIAN/target/scala-2.11/k-anonymity-mondrian_2.11-1.0.jar /home/luca/Documents/ANONYMIZER1_MONDRIAN/src/main/python/app_runner.py dataset file:///home/luca/Documents/ANONYMIZER6_STANDALONE/data/people_dataset/db_20_mod.csv col2,col3,col4 col5 3 strict 5")
+
+[k-anonymization with hierarchies (python 3)]
+os.system("spark-submit --master spark://luca-thinkpad:7077 --deploy-mode client --name HierarchyAnonymizer /home/luca/Documents/ANONYMIZER2_HIERARCHY/datafly.py -pt '/home/luca/Documents/ANONYMIZER6_STANDALONE/data/people_dataset/db_100.csv' -qi 'age' 'city_birth' 'zip_code' -dgh '/home/luca/Documents/ANONYMIZER6_STANDALONE/data/people_dataset/generalization_hierarchies/age_generalization.csv' '/home/luca/Documents/ANONYMIZER6_STANDALONE/data/people_dataset/generalization_hierarchies/city_birth_generalization.csv' '/home/luca/Documents/ANONYMIZER6_STANDALONE/data/people_dataset/generalization_hierarchies/zip_code_generalization.csv' -k 3 -o '/home/luca/Documents/ANONYMIZER6_STANDALONE/data/people_dataset/db_100_anon.csv'")
+
+[l-diversity with hierarchies (python 3)]
+os.system("spark-submit --master spark://luca-thinkpad:7077 --deploy-mode client --name LDiversityAnonymizer anonymizer.py adult 2")
+

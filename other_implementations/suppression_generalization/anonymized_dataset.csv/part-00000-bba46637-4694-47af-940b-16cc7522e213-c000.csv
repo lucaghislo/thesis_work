@@ -1,0 +1,10 @@
+PatientID,PatientName,Postcode,Age,Disease
+*,*,476**,20-30,Heart Disease
+*,*,476**,20-30,Heart Disease
+*,*,476**,20-30,Heart Disease
+*,*,479**,>=40,Flu
+*,*,479**,>=40,Heart Disease
+*,*,479**,>=40,Cancer
+*,*,476**,30-40,Heart Disease
+*,*,476**,30-40,Cancer
+*,*,476**,30-40,Cancer
