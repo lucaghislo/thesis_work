@@ -30,3 +30,6 @@ This directory contains two UDFs (User Defined Functions) that allow to manually
 
 - **ANONYMIZER5_PAPER**<br>
   This implementation allows to perform k-anonymization by manually dividing the dataset, in order for each bucket to be assigned to every single worker in the cluster.
+
+- **ANONYMIZER6_INCOGNITO**<br>
+  This implementation refers to a project that actually implements k-anonymity using hierarchies, other then providing support for l-divesrity and t-closeness. It is the most complex implementation, yet being at the same time the most suitable for future expansions.
