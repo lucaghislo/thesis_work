@@ -1,5 +1,5 @@
 # Thesis Work
-This repository contains all the code referred to in my thesis work regarding the implementation of anonymization techniques using Apache Spark
+This repository contains all the code referred to in my thesis work regarding the implementation of anonymization techniques using Apache Spark.
 
 This repository contains the following implementations:
 
