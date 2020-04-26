@@ -1,0 +1,137 @@
+PROJECTS CHEATSHEET
+
+[load Apache Spark]
+	export SPARK_HOME=/usr/local/spark	
+	export PATH=$PATH:$SPARK_HOME/bin:$SPARK_HOME/sbin
+	source ~/.bashrc
+	start-master.sh
+	start-slave.sh --cores 4 --memory 4g spark://luca-thinkpad:7077
+	export HADOOP_HOME=/home/luca/hadoop-2.9.2-src
+
+[spark python]
+	$SPARK_HOME/bin/pyspark
+
+[spark scala]
+	$SPARK_HOME/bin/spark-shell
+
+[jupyter notebook]	
+	jupyter notebook
+
+[stop spark-master]
+	stop-master.sh
+
+[stop workers]
+	stop-slave.sh
+
+===============================================================================
+
+SPARK MONDRIAN K-ANONYMIZER (Titanic simple dataset)
+file:///home/luca/Documents/k-anonymity-mondrian-master
+
+[compile the application]
+	./build/sbt clean package
+
+[define the path to spark]
+	export SPARK_HOME=/usr/local/spark
+
+[define the spark-submit alias]
+	alias spark-submit='/usr/local/spark-2.4.4-bin-hadoop2.7/bin/spark-submit'
+
+[run the application]
+	spark-submit --jars target/scala-2.11/k-anonymity-mondrian_2.11-1.0.jar src/main/python/app_runner.py titanic file:///home/luca/Documents/k-anonymity-mondrian-master/titanic.csv homedest,sex body 3 strict
+
+-------------------------------------------------------------------------------
+
+MONDRIAN K-ANONYMIZER USING PYTHON
+file:///home/luca/Documents/Mondrian-master
+
+[launch the execution]
+	python anonymizer.py
+
+[non-anonymous dataset]
+	file:///home/luca/Documents/Mondrian-master/data/adult.data
+
+[anonymized dataset]
+	file:///home/luca/Documents/Mondrian-master/data/anonymized.data
+
+-------------------------------------------------------------------------------
+
+BASIC MONDRIAN K-ANONYMIZER USING PYTHON
+file:///home/luca/Documents/Basic_Mondrian-master
+
+[launch the execution]
+	python anonymizer.py
+
+[non-anonymous dataset]
+	file:///home/luca/Documents/Basic_Mondrian-master/data/adult.data
+
+[anonymized dataset]
+	file:///home/luca/Documents/Basic_Mondrian-master/data/anonymized.data
+
+-------------------------------------------------------------------------------
+
+UTD ANONYMIZATION TOOLBOX
+file:///home/luca/Documents/toolbox_linux64
+
+[launch the exectuion]
+	./anonymization.sh
+
+[non-anonymous dataset]
+	file:///home/luca/Documents/toolbox_linux64/dataset/census-income_1K.data
+
+[anonymized dataset]
+	file:///home/luca/Documents/toolbox_linux64/census-income_Anon.data
+
+-------------------------------------------------------------------------------
+
+K-ANONYMIZATION IN PYTHON
+file:///home/luca/Documents/k-anonymity-master
+
+[build project]
+	stack build
+
+[k-anonymize dataset (after setting config.yaml)]
+	stack exec -- k-anonymity +RTS -N4 > data/result.csv
+
+[non-anonymous dataset input folder]
+	file:///home/luca/Documents/k-anonymity-master/data
+
+[anonymized dataset in CSV format]
+	file:///home/luca/Documents/k-anonymity-master/data/result.csv
+
+-------------------------------------------------------------------------------
+
+CLUSTERING BASED K-ANONYMIZATION IN PYTHON
+file:///home/luca/Documents/Clustering_based_K_Anon-master
+
+[launch the execution]:
+	python anonymizer.py
+
+-------------------------------------------------------------------------------
+
+PYTHON DATAFLY K-ANONIMYZATION ALGORITHM
+file:///home/luca/Documents/python-datafly-master
+
+[launch the execution]
+	python3 datafly.py -pt "example/db_100.csv" -qi "age" "city_birth" "zip_code" -dgh "example/age_generalization.csv" "example/city_birth_generalization.csv" "example/zip_code_generalization.csv" -k 3 -o "example/db_100_3_anon.csv"
+
+-------------------------------------------------------------------------------
+
+SQL K-ANONYMIZATION (using health dataset)
+file:///home/luca/Documents/k-anonymization_SQL
+
+[sql_k-anonymization_cheatsheet.txt]
+
+-------------------------------------------------------------------------------
+
+SPARK USER DEFINED FUNCTIONS (SPARK UDFs)
+file:///home/luca/Documents/Spark-UDF
+
+-------------------------------------------------------------------------------
+
+AMNESIA ANONYMIZER WITH GUI
+file:///home/luca/Documents/amnesia_anonymizer
+
+[start the gui]
+	java -jar Amnesia.jar
+

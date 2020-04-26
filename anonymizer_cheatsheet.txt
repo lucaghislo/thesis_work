@@ -1,0 +1,76 @@
+	+------------------------------------------------+	
+|file:///home/luca/Documents/ANONYMIZER1_MONDRIAN|
++------------------------------------------------+
+
+[spark generalized k-anonymization]
+	export SPARK_HOME=/usr/local/spark
+	export PATH= 	$PATH:$SPARK_HOME/bin:$SPARK_HOME/sbin
+	source ~/.bashrc
+	start-master.sh
+	start-slave.sh spark://luca-thinkpad:7077
+	
+	./build/sbt clean package
+
+	alias spark-submit='/usr/local/spark-2.4.5-bin-hadoop2.7/bin/spark-submit'
+
+	export PYSPARK_PYTHON=python2
+
+[spark generalized k-anonymization on db_100.csv]
+	spark-submit --master spark://luca-thinkpad:7077 --deploy-mode client --name MondrianAnonymizer --jars target/scala-2.11/k-anonymity-mondrian_2.11-1.0.jar src/main/python/app_runner.py dataset file:///home/luca/Documents/ANONYMIZER1_MONDRIAN/data/db_100.csv col2,col3,col4 col5 3 strict 5
+
+[spark generalized k-anonymization on db_50.csv]
+	spark-submit --master spark://luca-thinkpad:7077 --deploy-mode client --name MondrianAnonymizer --jars target/scala-2.11/k-anonymity-mondrian_2.11-1.0.jar src/main/python/app_runner.py dataset file:///home/luca/Documents/ANONYMIZER1_MONDRIAN/data/db_50.csv col2,col3,col4 col5 3 strict 5
+
+[spark generalized k-anonymization on db_20.csv]
+	spark-submit --master spark://luca-thinkpad:7077 --deploy-mode client --name MondrianAnonymizer --jars target/scala-2.11/k-anonymity-mondrian_2.11-1.0.jar src/main/python/app_runner.py dataset file:///home/luca/Documents/ANONYMIZER1_MONDRIAN/data/db_20.csv col2,col3,col4 col5 3 strict 5
+
++-------------------------------------------------+
+|file:///home/luca/Documents/ANONYMIZER2_HIERARCHY|
++-------------------------------------------------+
+
+[spark k-anonymization with hierarchies]
+	export SPARK_HOME=/usr/local/spark
+	export PATH=$PATH:$SPARK_HOME/bin:$SPARK_HOME/sbin
+	source ~/.bashrc
+	start-master.sh
+	start-slave.sh spark://luca-thinkpad:7077
+
+	alias spark-submit='/usr/local/spark-2.4.5-bin-hadoop2.7/bin/spark-submit'
+
+	export PYSPARK_PYTHON=python3	
+
+[people_dataset/db_100.csv]
+	spark-submit --master spark://luca-thinkpad:7077 --deploy-mode client --name HierarchyAnonymizer datafly.py -pt "data/people_dataset/db_100.csv" -qi "age" "city_birth" "zip_code" -dgh "data/people_dataset/generalization_hierarchies/age_generalization.csv" "data/people_dataset/generalization_hierarchies/city_birth_generalization.csv" "data/people_dataset/generalization_hierarchies/zip_code_generalization.csv" -k 3 -o "data/people_dataset/db_100_anon.csv"
+
+[health_dataset/healthdata.csv]
+	spark-submit --master spark://luca-thinkpad:7077 --deploy-mode client --name HierarchyAnonymizer datafly.py -pt "data/health_dataset/healthdata.csv" -qi "PatientName" "Age" "Postcode" -dgh "data/health_dataset/generalization_hierarchies/name_generalization.csv" "data/health_dataset/generalization_hierarchies/age_generalization.csv" "data/health_dataset/generalization_hierarchies/zip_code_generalization.csv" -k 3 -o "data/health_dataset/health_data_anon.csv"
+
+[adult_dataset/adult.csv]
+	spark-submit --master spark://luca-thinkpad:7077 --deploy-mode client --name HierarchyAnonymizer datafly.py -pt "data/adult_dataset/adult.csv" -qi "age" "education" "marital-status" "native-country" "occupation" "workclass" -dgh "data/adult_dataset/generalization_hierarchies/adult_hierarchy_age.csv" "data/adult_dataset/generalization_hierarchies/adult_hierarchy_education.csv" "data/adult_dataset/generalization_hierarchies/adult_hierarchy_marital-status.csv" "data/adult_dataset/generalization_hierarchies/adult_hierarchy_native-country.csv" "data/adult_dataset/generalization_hierarchies/adult_hierarchy_occupation.csv" "data/adult_dataset/generalization_hierarchies/adult_hierarchy_workclass.csv" -k 3 -o "data/adult_dataset/adult_anon.csv"
+
++--------------------------------------------------+
+|file:///home/luca/Documents/ANONYMIZER3_LDIVERSITY|
++--------------------------------------------------+
+
+[spark l-diversity anonymization with hierarchies]
+	export SPARK_HOME=/usr/local/spark
+	export PATH=$PATH:$SPARK_HOME/bin:$SPARK_HOME/sbin
+	source ~/.bashrc
+	start-master.sh
+	start-slave.sh spark://luca-thinkpad:7077
+
+	export SPARK_HOME=/usr/local/spark
+
+	alias spark-submit='/usr/local/spark-2.4.5-bin-hadoop2.7/bin/spark-submit'
+	
+	export PYSPARK_PYTHON=python2
+
+[adult_dataset/adult.csv]
+	spark-submit --master spark://luca-thinkpad:7077 --deploy-mode client --name LDiversityAnonymizer anonymizer.py adult 2
+
+[health_dataset/healthdata.csv]
+	spark-submit --master spark://luca-thinkpad:7077 --deploy-mode client --name LDiversityAnonymizer anonymizer.py health 2
+
+[informs_dataset/demographics.csv]
+	spark-submit --master spark://luca-thinkpad:7077 --deploy-mode client --name LDiversityAnonymizer anonymizer.py informs 2
+
